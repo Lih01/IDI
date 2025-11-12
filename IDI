@@ -1,0 +1,27 @@
+# Indice de Desempenho Inteligente (IDI)
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Eixo X: Erros Persistentes (Ep) - supondo que vai de 0 a 20
+eixo_x = np.linspace(0, 20, 50)
+
+# Eixo Y: Erros Recentes (Er) - supondo que vai de 0 a 30
+eixo_y = np.linspace(0, 30, 50)
+
+# Criar a "malha" (grid) para o gráfico 3D
+Ep, Er = np.meshgrid(eixo_x, eixo_y)
+
+# Fixando a constante de Tempo Médio (Tm) em 10
+Tm = 10 
+
+# Calculando o Indice de Desempenho Inteligente (IDI)
+IDI = 100 - (Ep * 2) - (Er * 1.5) - (Tm * 0.5)
+
+# Configurando o gráfico 3D
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.plot_surface(Ep, Er, IDI, cmap='viridis')
+ax.set_xlabel('Erros Persistentes (Ep)')
+ax.set_ylabel('Erros Recentes (Er)')
+ax.set_zlabel('Indice de Desempenho Inteligente (IDI)')
+plt.show()
